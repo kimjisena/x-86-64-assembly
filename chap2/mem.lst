@@ -1,0 +1,29 @@
+     1                                 %line 1+1 mem.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 04000000               a dd 4
+     6 00000004 CDCC8C40               b dd 4.4
+     7 00000008 00000000<rept>         c times 10 dd 0
+     8 00000030 01000200               d dw 1, 2
+     9 00000034 FB                     e db 0xfb
+    10 00000035 68656C6C6F20776F72-    f db "hello world", 0
+    11 00000035 6C6400             
+    12                                 
+    13                                 [segment .bss]
+    14 00000000 <gap>                  g resd 1
+    15 00000004 <gap>                  h resd 10
+    16 0000002C <gap>                  i resb 100
+    17                                 
+    18                                 [segment .text]
+    19                                 [global main]
+    20                                 main:
+    21 00000000 55                      push rbp
+    22 00000001 4889E5                  mov rbp, rsp
+    23 00000004 4883EC10                sub rsp, 16
+    24                                 
+    25 00000008 31C0                    xor eax, eax
+    26 0000000A C9                      leave
+    27                                 
+    28                                 
+    29 0000000B C3                      ret
