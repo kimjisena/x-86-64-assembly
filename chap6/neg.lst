@@ -1,0 +1,24 @@
+     1                                 %line 1+1 neg.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 A6020000               x dd 678
+     6 00000004 81                     y db -127
+     7                                 
+     8                                 [global _start]
+     9                                 [segment .text]
+    10                                 _start:
+    11                                 
+    12 00000000 55                      push rbp
+    13 00000001 4889E5                  mov rbp, rsp
+    14 00000004 4883EC10                sub rsp, 16
+    15                                 
+    16 00000008 48C7C0EF0D0000          mov rax, 3567
+    17 0000000F F71C25[00000000]        neg dword [x]
+    18 00000016 F61C25[00000000]        neg byte [y]
+    19 0000001D 48F7D8                  neg rax
+    20                                 
+    21                                 
+    22 00000020 48C7C000000000          mov rax, 0
+    23 00000027 C9                      leave
+    24 00000028 C3                      ret
