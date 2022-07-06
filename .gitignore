@@ -2,3 +2,4 @@ chap*/*
 
 !chap*/*.asm
 !chap*/*.lst
+!chap*/*.md
