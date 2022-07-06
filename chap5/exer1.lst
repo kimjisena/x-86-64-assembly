@@ -1,0 +1,32 @@
+     1                                 %line 1+1 exer1.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 97000000               a dd 0x97
+     6 00000004 59000000               b dd 89
+     7 00000008 00FFFFFF               c dd -256
+     8 0000000C 56FFFFFF               d dd -170
+     9                                 
+    10                                 [global _start]
+    11                                 [segment .text]
+    12                                 _start:
+    13                                 
+    14 00000000 55                      push rbp
+    15 00000001 4889E5                  mov rbp, rsp
+    16 00000004 4883EC10                sub rsp, 16
+    17                                 
+    18                                 
+    19 00000008 8B0425[00000000]        mov eax, [a]
+    20 0000000F 8B1C25[00000000]        mov ebx, [b]
+    21 00000016 8B0C25[00000000]        mov ecx, [c]
+    22 0000001D 8B1425[00000000]        mov edx, [d]
+    23                                 
+    24                                 
+    25 00000024 01D8                    add eax, ebx
+    26 00000026 01C8                    add eax, ecx
+    27 00000028 01C2                    add edx, eax
+    28                                 
+    29                                 
+    30 0000002A 31C0                    xor eax, eax
+    31 0000002C C9                      leave
+    32 0000002D C3                      ret
