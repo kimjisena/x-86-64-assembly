@@ -1,0 +1,30 @@
+     1                                 %line 1+1 cmov.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 3300000000000000       x dq 51
+     6                                 
+     7                                 [global _start]
+     8                                 [segment .text]
+     9                                 _start:
+    10                                 
+    11 00000000 55                      push rbp
+    12 00000001 4889E5                  mov rbp, rsp
+    13 00000004 4883EC10                sub rsp, 16
+    14                                 
+    15                                 
+    16 00000008 48C7C084FFFFFF          mov rax, -124
+    17 0000000F 4889C3                  mov rbx, rax
+    18 00000012 48F7D8                  neg rax
+    19 00000015 480F4CC3                cmovl rax, rbx
+    20                                 
+    21                                 
+    22 00000019 48C7C300000000          mov rbx, 0
+    23 00000020 488B0425[00000000]      mov rax, [x]
+    24 00000028 4883E864                sub rax, 100
+    25 0000002C 480F4CC3                cmovl rax, rbx
+    26                                 
+    27                                 
+    28 00000030 48C7C000000000          mov rax, 0
+    29 00000037 C9                      leave
+    30 00000038 C3                      ret
