@@ -1,8 +1,5 @@
-; bit-wise not
+; bit-wise and
 
-
-    segment .data
-x   dq      0xff00
 
     global _start
     segment .text

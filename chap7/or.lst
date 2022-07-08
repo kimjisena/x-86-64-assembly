@@ -1,0 +1,19 @@
+     1                                 %line 1+1 or.asm
+     2                                 
+     3                                 
+     4                                 [global _start]
+     5                                 [segment .text]
+     6                                 _start:
+     7                                 
+     8 00000000 55                      push rbp
+     9 00000001 4889E5                  mov rbp, rsp
+    10 00000004 4883EC10                sub rsp, 16
+    11                                 
+    12 00000008 48C7C000100000          mov rax, 0x1000
+    13 0000000F 4883C801                or rax, 1
+    14 00000013 480D00FF0000            or rax, 0xff00
+    15                                 
+    16                                 
+    17 00000019 48C7C000000000          mov rax, 0
+    18 00000020 C9                      leave
+    19 00000021 C3                      ret
