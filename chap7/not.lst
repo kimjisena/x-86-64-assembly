@@ -1,0 +1,28 @@
+     1                                 %line 1+1 not.asm
+     2                                 
+     3                                 
+     4                                 
+     5                                 [segment .data]
+     6 00000000 00FF000000000000       x dq 0xff00
+     7                                 
+     8                                 [global _start]
+     9                                 [segment .text]
+    10                                 _start:
+    11                                 
+    12 00000000 55                      push rbp
+    13 00000001 4889E5                  mov rbp, rsp
+    14 00000004 4883EC10                sub rsp, 16
+    15                                 
+    16 00000008 48C7C000000000          mov rax, 0
+    17 0000000F 48F7D0                  not rax
+    18 00000012 48C7C200000000          mov rdx, 0
+    19 00000019 48C7C30F000000          mov rbx, 15
+    20 00000020 48F7F3                  div rbx
+    21                                 
+    22 00000023 48F7D0                  not rax
+    23 00000026 66F71425[00000000]      not word [x]
+    24                                 
+    25                                 
+    26 0000002E 48C7C000000000          mov rax, 0
+    27 00000035 C9                      leave
+    28 00000036 C3                      ret
