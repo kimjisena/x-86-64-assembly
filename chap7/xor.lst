@@ -1,0 +1,21 @@
+     1                                 %line 1+1 xor.asm
+     2                                 
+     3                                 
+     4                                 [global _start]
+     5                                 [segment .text]
+     6                                 _start:
+     7                                 
+     8 00000000 55                      push rbp
+     9 00000001 4889E5                  mov rbp, rsp
+    10 00000004 4883EC10                sub rsp, 16
+    11                                 
+    12 00000008 48B878563412785634-     mov rax, 0x1234567812345678
+    13 00000008 12                 
+    14 00000012 31C0                    xor eax, eax
+    15 00000014 48C7C034120000          mov rax, 0x1234
+    16 0000001B 4883F00F                xor rax, 0xf
+    17                                 
+    18                                 
+    19 0000001F 48C7C000000000          mov rax, 0
+    20 00000026 C9                      leave
+    21 00000027 C3                      ret
