@@ -1,0 +1,75 @@
+     1                                 %line 1+1 exer5.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 CD4CE142               a dd 112.65
+     6 00000004 23DB5342               b dd 52.964
+     7 00000008 00000000               prod dd 0
+     8                                 
+     9                                 [global _start]
+    10                                 [segment .text]
+    11                                 _start:
+    12                                 
+    13 00000000 55                      push rbp
+    14 00000001 4889E5                  mov rbp, rsp
+    15 00000004 4883EC10                sub rsp, 16
+    16                                 
+    17 00000008 8B0425[00000000]        mov eax, [a]
+    18 0000000F 8B1C25[00000000]        mov ebx, [b]
+    19                                 
+    20                                 
+    21 00000016 4189C0                  mov r8d, eax
+    22 00000019 41C1E81F                shr r8d, 31
+    23 0000001D 4189D9                  mov r9d, ebx
+    24 00000020 41C1E91F                shr r9d, 31
+    25 00000024 4509C8                  or r8d, r9d
+    26 00000027 41C1E01F                shl r8d, 31
+    27                                 
+    28                                 
+    29 0000002B 4189C1                  mov r9d, eax
+    30 0000002E B9FFFF7F00              mov ecx, 0x7fffff
+    31 00000033 4121C9                  and r9d, ecx
+    32 00000036 41C1C917                ror r9d, 23
+    33 0000003A 4183C901                or r9d, 0x1
+    34 0000003E 41C1C117                rol r9d, 23
+    35                                 
+    36 00000042 4189DA                  mov r10d, ebx
+    37 00000045 B9FFFF7F00              mov ecx, 0x7fffff
+    38 0000004A 4121CA                  and r10d, ecx
+    39 0000004D 41C1CA17                ror r10d, 23
+    40 00000051 4183CA01                or r10d, 0x1
+    41 00000055 41C1C217                rol r10d, 23
+    42                                 
+    43                                 
+    44 00000059 B1D2                    mov cl, -46
+    45                                 
+    46 0000005B 4189C3                  mov r11d, eax
+    47 0000005E 41C1EB17                shr r11d, 23
+    48 00000062 4181E3FF000000          and r11d, 0xff
+    49 00000069 4183EB7F                sub r11d, 127
+    50                                 
+    51 0000006D 4189DC                  mov r12d, ebx
+    52 00000070 41C1EC17                shr r12d, 23
+    53 00000074 4181E4FF000000          and r12d, 0xff
+    54 0000007B 4183EC7F                sub r12d, 127
+    55                                 
+    56 0000007F 4400D9                  add cl, r11b
+    57 00000082 4400E1                  add cl, r12b
+    58 00000085 80C17F                  add cl, 127
+    59                                 
+    60                                 
+    61 00000088 450FAFCA                imul r9d, r10d
+    62                                 
+    63                                 
+    64                                 
+    65                                 
+    66 0000008C 41C1C917                ror r9d, 23
+    67 00000090 4108C9                  or r9b, cl
+    68 00000093 41C1C117                rol r9d, 23
+    69 00000097 4509C1                  or r9d, r8d
+    70 0000009A 44890C25[00000000]      mov [prod], r9d
+    71                                 
+    72                                 
+    73 000000A2 48C7C000000000          mov rax, 0
+    74 000000A9 C9                      leave
+    75 000000AA C3                      ret
