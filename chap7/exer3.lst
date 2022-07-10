@@ -1,0 +1,46 @@
+     1                                 %line 1+1 exer3.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 0BB0EFBEFECA3713       data dq 0x1337cafebeefb00b
+     6 00000008 00                     result db 0
+     7                                 
+     8                                 [global _start]
+     9                                 [segment .text]
+    10                                 _start:
+    11                                 
+    12 00000000 55                      push rbp
+    13 00000001 4889E5                  mov rbp, rsp
+    14 00000004 4883EC10                sub rsp, 16
+    15                                 
+    16 00000008 488B0425[00000000]      mov rax, [data]
+    17                                 
+    18 00000010 88C3                    mov bl, al
+    19                                 
+    20 00000012 48C1C808                ror rax, 8
+    21 00000016 30C3                    xor bl, al
+    22                                 
+    23 00000018 48C1C808                ror rax, 8
+    24 0000001C 30C3                    xor bl, al
+    25                                 
+    26 0000001E 48C1C808                ror rax, 8
+    27 00000022 30C3                    xor bl, al
+    28                                 
+    29 00000024 48C1C808                ror rax, 8
+    30 00000028 30C3                    xor bl, al
+    31                                 
+    32 0000002A 48C1C808                ror rax, 8
+    33 0000002E 30C3                    xor bl, al
+    34                                 
+    35 00000030 48C1C808                ror rax, 8
+    36 00000034 30C3                    xor bl, al
+    37                                 
+    38 00000036 48C1C808                ror rax, 8
+    39 0000003A 30C3                    xor bl, al
+    40                                 
+    41 0000003C 881C25[00000000]        mov [result], bl
+    42                                 
+    43                                 
+    44 00000043 48C7C000000000          mov rax, 0
+    45 0000004A C9                      leave
+    46 0000004B C3                      ret
