@@ -1,0 +1,61 @@
+     1                                 %line 1+1 exer1.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 FA00                   x dw 0xfa
+     6                                 
+     7                                 [global _start]
+     8                                 [segment .text]
+     9                                 _start:
+    10                                 
+    11 00000000 55                      push rbp
+    12 00000001 4889E5                  mov rbp, rsp
+    13 00000004 4883EC10                sub rsp, 16
+    14                                 
+    15 00000008 31C0                    xor eax, eax
+    16 0000000A 31DB                    xor ebx, ebx
+    17                                 
+    18 0000000C 660FBA2425[00000000]-     bt word [x], 0
+    19 0000000C 00                 
+    20 00000016 0F92D3                  setc bl
+    21 00000019 01D8                    add eax, ebx
+    22                                 
+    23 0000001B 660FBA2425[00000000]-     bt word [x], 1
+    24 0000001B 01                 
+    25 00000025 0F92D3                  setc bl
+    26 00000028 01D8                    add eax, ebx
+    27                                 
+    28 0000002A 660FBA2425[00000000]-     bt word [x], 2
+    29 0000002A 02                 
+    30 00000034 0F92D3                  setc bl
+    31 00000037 01D8                    add eax, ebx
+    32                                 
+    33 00000039 660FBA2425[00000000]-     bt word [x], 3
+    34 00000039 03                 
+    35 00000043 0F92D3                  setc bl
+    36 00000046 01D8                    add eax, ebx
+    37                                 
+    38 00000048 660FBA2425[00000000]-     bt word [x], 4
+    39 00000048 04                 
+    40 00000052 0F92D3                  setc bl
+    41 00000055 01D8                    add eax, ebx
+    42                                 
+    43 00000057 660FBA2425[00000000]-     bt word [x], 5
+    44 00000057 05                 
+    45 00000061 0F92D3                  setc bl
+    46 00000064 01D8                    add eax, ebx
+    47                                 
+    48 00000066 660FBA2425[00000000]-     bt word [x], 6
+    49 00000066 06                 
+    50 00000070 0F92D3                  setc bl
+    51 00000073 01D8                    add eax, ebx
+    52                                 
+    53 00000075 660FBA2425[00000000]-     bt word [x], 7
+    54 00000075 07                 
+    55 0000007F 0F92D3                  setc bl
+    56 00000082 01D8                    add eax, ebx
+    57                                 
+    58                                 
+    59 00000084 48C7C000000000          mov rax, 0
+    60 0000008B C9                      leave
+    61 0000008C C3                      ret
