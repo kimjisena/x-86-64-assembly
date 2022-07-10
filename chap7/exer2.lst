@@ -1,0 +1,29 @@
+     1                                 %line 1+1 exer2.asm
+     2                                 
+     3                                 
+     4                                 [segment .data]
+     5 00000000 EFBE000000000000       a dq 0xbeef
+     6 00000008 FECA000000000000       b dq 0xcafe
+     7                                 
+     8                                 [global _start]
+     9                                 [segment .text]
+    10                                 _start:
+    11                                 
+    12 00000000 55                      push rbp
+    13 00000001 4889E5                  mov rbp, rsp
+    14 00000004 4883EC10                sub rsp, 16
+    15                                 
+    16 00000008 488B0425[00000000]      mov rax, [a]
+    17 00000010 488B1C25[00000000]      mov rbx, [b]
+    18                                 
+    19 00000018 4831D8                  xor rax, rbx
+    20 0000001B 4831C3                  xor rbx, rax
+    21 0000001E 4831D8                  xor rax, rbx
+    22                                 
+    23 00000021 48890425[00000000]      mov [a], rax
+    24 00000029 48891C25[00000000]      mov [b], rbx
+    25                                 
+    26                                 
+    27 00000031 48C7C000000000          mov rax, 0
+    28 00000038 C9                      leave
+    29 00000039 C3                      ret
