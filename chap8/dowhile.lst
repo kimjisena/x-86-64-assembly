@@ -1,0 +1,57 @@
+     1                                 %line 1+1 dowhile.asm
+     2                                 
+     3                                 
+     4                                 
+     5                                 
+     6                                 
+     7                                 
+     8                                 
+     9                                 
+    10                                 
+    11                                 
+    12                                 
+    13                                 
+    14                                 
+    15                                 
+    16                                 
+    17                                 [segment .data]
+    18 00000000 68656C6C6F20776F72-    data db "hello world", 0
+    19 00000000 6C6400             
+    20 0000000C 0000000000000000       n dq 0
+    21 00000014 77                     needle db 'w'
+    22                                 
+    23                                 [global _start]
+    24                                 [segment .text]
+    25                                 _start:
+    26                                 
+    27 00000000 55                      push rbp
+    28 00000001 4889E5                  mov rbp, rsp
+    29 00000004 4883EC10                sub rsp, 16
+    30                                 
+    31                                 
+    32                                 
+    33                                 
+    34                                 
+    35                                 
+    36                                 
+    37 00000008 8A1C25[00000000]        mov bl, [needle]
+    38 0000000F 31C9                    xor ecx, ecx
+    39 00000011 8A81[00000000]          mov al, [data+rcx]
+    40 00000017 3C00                    cmp al, 0
+    41 00000019 740F                    jz end_while
+    42                                 while:
+    43 0000001B 38D8                    cmp al, bl
+    44 0000001D 7412                    je found
+    45 0000001F 48FFC1                  inc rcx
+    46 00000022 8A81[00000000]          mov al, [data+rcx]
+    47 00000028 3C00                    cmp al, 0
+    48 0000002A 75ED                    jnz while
+    49                                 end_while:
+    50 0000002C 48C7C1FFFFFFFF          mov rcx, -1
+    51                                 found:
+    52 00000033 48890C25[00000000]      mov [n], rcx
+    53                                 
+    54                                 
+    55 0000003B 31C0                    xor eax, eax
+    56 0000003D C9                      leave
+    57 0000003E C3                      ret
