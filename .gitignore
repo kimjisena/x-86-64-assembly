@@ -1,5 +1,4 @@
 chap*/*
-
-!chap*/*.asm
-!chap*/*.lst
-!chap*/*.md
+chap*/*/
+!chap*/*.{asm,lst,md}
+!chap8/*/
