@@ -1,4 +1,4 @@
-; scas - scan [edi] for a string matchin eax
+; scas - scan [edi] for a string matching  eax
 ;
 ; scasb - scan byte string
 ; scasw - scan word string
