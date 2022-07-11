@@ -1,0 +1,41 @@
+     1                                 %line 1+1 loop.asm
+     2                                 
+     3                                 
+     4                                 
+     5                                 
+     6                                 
+     7                                 
+     8                                 [segment .data]
+     9 00000000 68656C6C6F206E6577-    data db "hello new world", 0
+    10 00000000 20776F726C6400     
+    11 00000010 77                     needle db 'w'
+    12 00000011 0F000000               n dd 15
+    13 00000015 00000000               loc dd 0
+    14                                 
+    15                                 [global _start]
+    16                                 [segment .text]
+    17                                 _start:
+    18                                 
+    19 00000000 55                      push rbp
+    20 00000001 4889E5                  mov rbp, rsp
+    21 00000004 4883EC10                sub rsp, 16
+    22                                 
+    23                                 
+    24                                 
+    25                                 
+    26                                 
+    27                                 
+    28 00000008 8A0425[00000000]        mov al, [needle]
+    29 0000000F 8B0C25[00000000]        mov ecx, [n]
+    30                                 more:
+    31 00000016 3881[FFFFFFFF]          cmp [data+rcx-1], al
+    32 0000001C 7400                    je found
+    33 0000001E E2F4                    loop more
+    34                                 found:
+    35 00000020 83E901                  sub ecx, 1
+    36 00000023 890C25[00000000]        mov [loc], ecx
+    37                                 
+    38                                 
+    39 0000002A 31C0                    xor eax, eax
+    40 0000002C C9                      leave
+    41 0000002D C3                      ret
