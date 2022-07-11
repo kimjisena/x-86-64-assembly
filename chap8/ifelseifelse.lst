@@ -1,0 +1,39 @@
+     1                                 %line 1+1 ifelseifelse.asm
+     2                                 
+     3                                 
+     4                                 
+     5                                 
+     6                                 
+     7                                 
+     8                                 
+     9                                 
+    10                                 
+    11                                 [segment .data]
+    12 00000000 0900000000000000       a dq 9
+    13 00000008 0800000000000000       b dq 8
+    14 00000010 0700000000000000       c dq 7
+    15 00000018 0000000000000000       result dq 0
+    16                                 
+    17                                 [segment .text]
+    18                                 [global _start]
+    19                                 _start:
+    20 00000000 488B0425[00000000]      mov rax, [a]
+    21 00000008 488B1C25[00000000]      mov rbx, [b]
+    22 00000010 4839D8                  cmp rax, rbx
+    23 00000013 7D0C                    jnl else_if
+    24 00000015 48C70425[00000000]-     mov qword [result], 1
+    25 00000015 01000000           
+    26 00000021 EB25                    jmp endif
+    27                                 else_if:
+    28 00000023 488B0C25[00000000]      mov rcx, [c]
+    29 0000002B 4839C8                  cmp rax, rcx
+    30 0000002E 7E0C                    jng else
+    31 00000030 48C70425[00000000]-     mov qword [result], 2
+    32 00000030 02000000           
+    33 0000003C EB0A                    jmp endif
+    34                                 else:
+    35 0000003E 48C70425[00000000]-     mov qword [result], 3
+    36 0000003E 03000000           
+    37                                 endif:
+    38 0000004A 31C0                    xor eax, eax
+    39 0000004C C3                      ret
