@@ -3,7 +3,7 @@
 ;    temp = a;
 ;    a = b;
 ;    b = temp;
-;}
+;  }
         segment     .data
 a       dq          9
 b       dq          7
