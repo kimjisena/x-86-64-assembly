@@ -1,0 +1,50 @@
+     1                                 %line 1+1 while.asm
+     2                                 
+     3                                 
+     4                                 
+     5                                 
+     6                                 
+     7                                 
+     8                                 
+     9                                 
+    10                                 
+    11                                 
+    12                                 [segment .data]
+    13 00000000 1032547698BADCFE       data dq 0xfedcba9876543210
+    14 00000008 0000000000000000       sum dq 0
+    15                                 
+    16                                 [global _start]
+    17                                 [segment .text]
+    18                                 _start:
+    19                                 
+    20 00000000 55                      push rbp
+    21 00000001 4889E5                  mov rbp, rsp
+    22 00000004 4883EC10                sub rsp, 16
+    23                                 
+    24                                 
+    25                                 
+    26                                 
+    27                                 
+    28                                 
+    29                                 
+    30                                 
+    31 00000008 488B0425[00000000]      mov rax, [data]
+    32 00000010 31DB                    xor ebx, ebx
+    33 00000012 31C9                    xor ecx, ecx
+    34 00000014 31D2                    xor edx, edx
+    35                                 while:
+    36 00000016 4883F940                cmp rcx, 64
+    37 0000001A 7D10                    jnl end_while
+    38 0000001C 480FBAE000              bt rax, 0
+    39 00000021 0F92D3                  setc bl
+    40 00000024 01DA                    add edx, ebx
+    41 00000026 48D1E8                  shr rax, 1
+    42 00000029 48FFC1                  inc rcx
+    43 0000002C EBE6                    jmp while
+    44                                 end_while:
+    45 0000002E 48891425[00000000]      mov [sum], rdx
+    46                                 
+    47                                 
+    48 00000036 31C0                    xor eax, eax
+    49 00000038 C9                      leave
+    50 00000039 C3                      ret
